@@ -1,8 +1,8 @@
-import hashlib
+import hmac
 
-
+SECRET = "imsosecret"
 def has_str(s):
-    return hashlib.md5(s).hexdigest()
+    return hmac.new(SECRET, s).hexdigest()
 
 
 def make_secure_val(s):
