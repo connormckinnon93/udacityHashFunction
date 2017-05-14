@@ -25,6 +25,10 @@ def make_pw_hash(name, pw):
 	h = hashlib.sha256(name + pw + salt).hexdigest()
 	return '%s,%s' % (h, salt)
 
+def valid_pw(name, pw, h):
+	salt = h.split(',')[1]
+	return h == make_pw_hash(name, pw, salt)
+
 def gae_cookie_hasher():
     visits = 0
     visit_cookie_str = self.request.cookies.get('visits')
